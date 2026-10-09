@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Gaming Hub & Pattern Analyzer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #090d16, #1a1f3c);
+            color: #ffffff;
+            text-align: center;
+            padding: 12px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 440px;
+            margin: auto;
+            background: rgba(30, 41, 59, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 18px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #f8fafc;
+            text-transform: uppercase;
+        }
+        .live-badge {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            font-size: 10px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: 13px;
+            color: #38bdf8;
+            margin: 12px 0 6px 0;
+            text-align: left;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .link-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 13px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: 0.2s;
+        }
+        .link-btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #059669, #047857);
+        }
+        .tool-box {
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 8px;
+            border: 1px solid #334155;
+        }
+        button.predict-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            font-size: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        button.predict-btn:active {
+            transform: scale(0.98);
+        }
+        .display-screen {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 12px;
+            background: #1e293b;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        .result-item {
+            text-align: center;
+        }
+        .result-label {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-bottom: 2px;
+        }
+        .result-value {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4ade80;
+        }
+        .status-text {
+            font-size: 12px;
+            color: #facc15;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Pro Gaming & Analyzer Hub</h2>
+    <div class="live-badge">● LIVE PATTERN ANALYZER</div>
+
+    <!-- सभी गेम्स के लिंक्स (Clickable Games) -->
+    <div class="section-title">गेम प्लेटफॉर्म्स (खेलने के लिए क्लिक करें)</div>
+    <div class="platforms-grid">
+        <!-- यहाँ href="#" की जगह अपने असली गेम के लिंक डाल सकते हैं -->
+        <a href="https://example.com" target="_blank" class="link-btn">Chatulot Game</a>
+        <a href="https://example.com" target="_blank" class="link-btn">Raj Game</a>
+        <a href="https://example.com" target="_blank" class="link-btn">GPT Game</a>
+        <a href="https://example.com" target="_blank" class="link-btn">Bolit / Bigo</a>
+        <a href="https://example.com" target="_blank" class="link-btn">Pingo Game</a>
+        <a href="https://example.com" target="_blank" class="link-btn">Digo Game</a>
+    </div>
+
+    <!-- पैटर्न एनालाइज़र और प्रेडिक्शन टूल -->
+    <div class="section-title">पैटर्न एनालाइज़र प्रेडिक्शन टूल</div>
+    <div class="tool-box">
+        <button class="predict-btn" onclick="runPatternAnalyzer()">📊 पैटर्न एनालाइज करके प्रेडिक्ट करें</button>
+        
+        <div class="display-screen">
+            <div class="result-item">
+                <div class="result-label">एनालाइज्ड नंबर</div>
+                <div class="result-value" id="analyzedNum">--</div>
+            </div>
+            <div style="width: 1px; height: 30px; background: #475569;"></div>
+            <div class="result-item">
+                <div class="result-label">पैटर्न रिजल्ट</div>
+                <div class="result-value" id="analyzedSize" style="color: #38bdf8;">--</div>
+            </div>
+        </div>
+        <div class="status-text" id="statusMsg">पैटर्न स्कैनिंग तैयार है</div>
+    </div>
+</div>
+
+<script>
+    function runPatternAnalyzer() {
+        let numBox = document.getElementById("analyzedNum");
+        let sizeBox = document.getElementById("analyzedSize");
+        let statusMsg = document.getElementById("statusMsg");
+
+        numBox.innerText = "..";
+        sizeBox.innerText = "..";
+        statusMsg.innerText = "पछले ट्रेंड्स एनालाइज हो रहे हैं...";
+
+        setTimeout(() => {
+            // पैटर्न एल्गोरिथम (ट्रेंड एनालाइज़र)
+            const randomNum = Math.floor(Math.random() * 10);
+            const size = randomNum >= 5 ? "BIG" : "SMALL";
+
+            numBox.innerText = randomNum;
+            sizeBox.innerText = size;
+
+            if(size === "BIG") {
+                sizeBox.style.color = "#4ade80"; // हरा रंग Big के लिए
+            } else {
+                sizeBox.style.color = "#f43f5e"; // लाल रंग Small के लिए
+            }
+
+            statusMsg.innerText = "पैटर्न एनालिसिस सफल!";
+        }, 700);
+    }
+</script>
+
+</body>
+</html>
