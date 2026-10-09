@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big Small Prediction Tool</title>
+    <title>Big Small & Number Prediction Platform</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,48 +19,80 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            margin-top: 20px;
         }
         button {
             background-color: #3b82f6;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
-            margin: 10px 0;
             width: 100%;
+            margin-top: 10px;
         }
         button:hover {
             background-color: #2563eb;
         }
+        .link-btn {
+            background-color: #10b981;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            color: white;
+            border-radius: 5px;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+        .link-btn:hover {
+            background-color: #059669;
+        }
         .result {
             font-size: 24px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 15px;
             color: #4ade80;
+        }
+        .sub-text {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Big/Small Predictor Tool</h2>
-    <p>पैटर्न और ट्रेंड के आधार पर अगला अनुमान देखें</p>
+    <h2>Prediction Tool & Platforms</h2>
     
-    <button onclick="generatePrediction()">अगला प्रेडिक्शन देखें</button>
+    <!-- गेम प्लेटफॉर्म्स के लिंक्स -->
+    <div style="margin-bottom: 20px;">
+        <h3>गेम प्लेटफॉर्म्स</h3>
+        <a href="https://example.com" target="_blank" class="link-btn">Pingo Game Link</a>
+        <a href="https://example.com" target="_blank" class="link-btn">Digo Game Link</a>
+    </div>
+
+    <hr style="border: 0.5px solid #334155;">
+
+    <!-- प्रेडिक्शन टूल सेक्शन -->
+    <h3>Number & Big/Small Tool</h3>
+    <button onclick="generatePrediction()">नतीजा देखें</button>
     
-    <div class="result" id="predictionResult">परिणाम: --</div>
+    <div class="result" id="numberResult">नंबर: --</div>
+    <div class="sub-text" id="sizeResult">रिजल्ट: --</div>
 </div>
 
 <script>
     function generatePrediction() {
-        const outcomes = ["BIG", "SMALL"];
-        // रैंडम प्रेडिक्शन जनरेट करने का लॉजिक (इसे आप अपने अनुसार बदल सकते हैं)
-        const randomIndex = Math.floor(Math.random() * outcomes.length);
-        const selectedResult = outcomes[randomIndex];
+        // 0 से 9 तक का रैंडम नंबर जनरेट करने का एल्गोरिथम
+        const randomNum = Math.floor(Math.random() * 10);
         
-        document.getElementById("predictionResult").innerText = "परिणाम: " + selectedResult;
+        // एल्गोरिथम नियम: 0-4 Small, 5-9 Big
+        let size = randomNum >= 5 ? "BIG" : "SMALL";
+        
+        document.getElementById("numberResult").innerText = "नंबर: " + randomNum;
+        document.getElementById("sizeResult").innerText = "रिजल्ट: " + size;
     }
 </script>
 
