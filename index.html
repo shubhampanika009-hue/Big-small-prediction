@@ -98,3 +98,123 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Tool & All Game Platforms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0f172a;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px;
+        }
+        .container {
+            max-width: 420px;
+            margin: auto;
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-size: 16px;
+            color: #38bdf8;
+            margin: 15px 0 10px 0;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 5px;
+        }
+        .link-btn {
+            background-color: #10b981;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            color: white;
+            border-radius: 5px;
+            margin-top: 8px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .link-btn:hover {
+            background-color: #059669;
+        }
+        button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #2563eb;
+        }
+        .result-box {
+            background: #0f172a;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        .result {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4ade80;
+        }
+        .sub-text {
+            font-size: 14px;
+            color: #cbd5e1;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>All Platforms & Prediction Tool</h2>
+
+    <!-- सभी गेम प्लेटफॉर्म्स के लिंक्स -->
+    <div class="section-title">गेम प्लेटफॉर्म्स (Game Links)</div>
+    <a href="https://example.com" target="_blank" class="link-btn">Chatulot Game</a>
+    <a href="https://example.com" target="_blank" class="link-btn">Raj Game</a>
+    <a href="https://example.com" target="_blank" class="link-btn">GPT Game</a>
+    <a href="https://example.com" target="_blank" class="link-btn">Bolit / Bigo Game</a>
+    <a href="https://example.com" target="_blank" class="link-btn">Pingo Game</a>
+    <a href="https://example.com" target="_blank" class="link-btn">Digo Game</a>
+
+    <!-- प्रेडिक्शन टूल सेक्शन -->
+    <div class="section-title">पैटर्न नंबर प्रेडिक्शन टूल</div>
+    <button onclick="generatePrediction()">नंबर और प्रेडिक्शन देखें</button>
+    
+    <div class="result-box">
+        <div class="result" id="numberResult">नंबर: --</div>
+        <div class="sub-text" id="sizeResult">पैटर्न रिजल्ट: --</div>
+    </div>
+</div>
+
+<script>
+    function generatePrediction() {
+        // पैटर्न और एल्गोरिथम के आधार पर 0 से 9 तक का रैंडम नंबर जनरेट करना
+        const randomNum = Math.floor(Math.random() * 10);
+        
+        // एल्गोरिथम नियम: 0 से 4 तक SMALL, 5 से 9 तक BIG
+        let size = randomNum >= 5 ? "BIG" : "SMALL";
+        
+        document.getElementById("numberResult").innerText = "नंबर: " + randomNum;
+        document.getElementById("sizeResult").innerText = "पैटर्न रिजल्ट: " + size;
+    }
+</script>
+
+</body>
+</html>
